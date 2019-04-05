@@ -4,10 +4,13 @@ import AddOption from './AddOption'
 import Options from './Options'
 import ChooseOption from './ChooseOption'
 import Header from './Header'
+import OptionalModal from './OptionModal'
+
 
 export default class IndecisionApp extends React.Component {
     state = {
         options: this.props.options || []
+        ,selectedOption: undefined
     }
 //   properties
     handleRemoveOptions =() => {
@@ -20,7 +23,10 @@ export default class IndecisionApp extends React.Component {
     }
     handlePick = () => {
         const pick = Math.floor(Math.random() * this.state.options.length + 0)
-        alert(this.state.options[pick])
+        this.setState(()=>({
+            selectedOption: this.state.options[pick]
+        })
+        )
     }
     handleAddOption = (option) => {
         if(!option) {
@@ -29,6 +35,11 @@ export default class IndecisionApp extends React.Component {
             return "Option already included"
         }
         this.setState( (prevState) => ( { options: prevState.options.concat(option) } ) )
+    }
+    wipeSelectedOption = () => {
+        this.setState(() => ({
+            selectedOption: undefined
+        }))
     }
     render() {
         const heading = "Indecision App"
@@ -39,6 +50,7 @@ export default class IndecisionApp extends React.Component {
                 <ChooseOption
                     hasOptions={this.state.options.length > 0}
                     handlePick={this.handlePick}/>
+
                 <AddOption
                     handleAddOption = {this.handleAddOption}
                 />
@@ -46,6 +58,10 @@ export default class IndecisionApp extends React.Component {
                     options={this.state.options} 
                     handleRemoveOptions={this.handleRemoveOptions}
                     handleSingleDelete={this.handleSingleDelete}
+                />
+                <OptionalModal 
+                    selectedOption={this.state.selectedOption}
+                    wipeSelectedOption={this.wipeSelectedOption}
                 />
             </div>
         )
