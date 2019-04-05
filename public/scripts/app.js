@@ -26,7 +26,33 @@ var IndecisionApp = function (_React$Component) {
         return _this;
     }
 
+    // react methods
+
+
     _createClass(IndecisionApp, [{
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            this.setState(function () {
+                return {
+                    options: JSON.parse(localStorage.getItem("options"))
+                };
+            });
+            console.log('component has mounted');
+        }
+    }, {
+        key: "componentDidUpdate",
+        value: function componentDidUpdate(prevProps, prevState) {
+            if (prevState.options.length !== this.state.options.length) {
+                localStorage.setItem("options", JSON.stringify(this.state.options));
+                console.log('component updated', JSON.stringify(this.state.options));
+            }
+        }
+    }, {
+        key: "componentWillUnmount",
+        value: function componentWillUnmount() {
+            console.log('component will unmount');
+        }
+    }, {
         key: "handleRemoveOptions",
         value: function handleRemoveOptions() {
             this.setState(function () {
