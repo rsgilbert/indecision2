@@ -55,27 +55,6 @@ renderApp()
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 let count = 0
 const addOne = () => {
     count ++
@@ -102,3 +81,24 @@ const renderCountApp = () => { // manual data binding
 }
 // renderCountApp()
 
+
+// babel-plugin-transform-class-properties
+
+class Old {
+    constructor(){
+        this.name ="Mike"
+    }
+}
+const old =new Old()
+console.log(old)
+
+class New {
+    nam = "Da" // note: no initialisation with let or const
+    getName = () => {
+        console.log(`name is ${this.nam}`)
+    }
+}
+const neW = new New()
+const getN = neW.getName
+console.log(neW)
+console.log(getN())
