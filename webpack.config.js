@@ -10,11 +10,21 @@ module.exports = {
     }
     // how you want to use your loader
     ,module: {
-        rules: [{
+        rules: [
+            {
             loader: 'babel-loader',
             test: /\.js$/,
             exclude: /node_modules/
-        }]
+        }, {
+            test: /\.s?css$/,
+            use: [
+                'style-loader',
+                'css-loader',
+                'sass-loader'
+            ]
+        }
+    
+    ]
     }
     ,devtool: 'cheap-module-eval-source-map'
     ,devServer: {

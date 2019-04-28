@@ -1,0 +1,33 @@
+// add option error
+.add-option-error {
+    color: $off-white;
+    font-style: italic;
+    padding: 0 $m-size;
+}
+
+.add-option {
+    display: flex;
+    padding: $m-size;
+
+}
+
+.add-option__input {
+    background: $dark-blue;
+    flex-grow: 1;
+    border: none;
+    border-bottom: .4rem solid darken($dark-blue, 3%);
+    margin-right: 0.3rem;
+    padding: $m-size;
+    color: $off-white;
+    font-weight: bold;
+
+}
+
+@media (max-width: $mobile-breakpoint) {
+    .add-option {
+       flex-direction: column;
+    }
+    .add-option__input {
+        margin: 0 0 $s-size 0;
+    }
+}
